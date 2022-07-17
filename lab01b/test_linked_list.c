@@ -9,12 +9,20 @@ int main(int argc, char **argv) {
     Node *head = NULL;
 
     /*********** reverse_list test ***********/
-    reverse_list(&head);
     for (int i = 0; i < 5; ++i) {
-        add_to_front(&head, i);
-        reverse_list(&head);
+        if(head == NULL)
+           {
+             head = (Node*)malloc(sizeof(Node));
+             head->data = i;
+             head->next  = NULL;
+           }
+        else
+        {
+            add_to_front(&head, i);
+            reverse_list(&head);
+        }
     }
-
+    
     int expected_values[] = {3, 1, 0, 2, 4};
     Node *curr = head;
     for (int i = 0; i < 5; ++i) {
